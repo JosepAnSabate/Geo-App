@@ -1,0 +1,27 @@
+body{
+    background: linear-gradient(90deg,rgb(137, 233, 178),rgb(255, 255, 255),rgb(199, 184, 137));
+}
+#map {
+    height: 500px;
+    width: 80%;
+    background-color: #ffffff;
+    margin: auto; /* centra mapa */
+}
+
+
+/* coordenades ratoli */
+#coordenades {     
+    display: block;
+    position: relative;
+    margin: 0px auto;
+    width: 40%;
+    padding: 5px;
+    border: none;
+    border-radius: 7px;
+    font-size: 18px;
+    font-family: 'PT Serif', serif;
+    text-align: center;
+    color: #000;
+    background: #D6EAF8;
+    margin-top: 7px;
+}
