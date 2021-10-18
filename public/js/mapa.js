@@ -1,13 +1,6 @@
 function init() {
     const map = L.map('map', {
       // drawControl: true, // draw tools, more down
-      // draw: {
-      //   circle: false,
-      //   marker: true,
-      //   polyline: false, 
-      //   polygon: false,
-      //   rectangle: false
-      // },
       center: [41.6863, 1.6382],
       zoom: 8,
       attribution: 'Institut Cartogràfic i Geològic de Catalunya CC-BY-SA-3'
@@ -32,6 +25,8 @@ function init() {
       };
       controlCapes = L.control.layers(mapaBase, null, {collapsed: false});
      controlCapes.addTo(map)
+
+     
      // show your current location
       L.control.locate().addTo(map);
       // add map scale
@@ -70,13 +65,41 @@ function init() {
     drawnItems.addLayer(e.layer);
 
     drwanItemsGJ = drawnItems.toGeoJSON();
-    //console.log(drwanItemsGJ.features)
-    console.log(drwanItemsGJ.features[0].geometry); // get geometry
-    console.log(drwanItemsGJ.features[0].geometry.coordinates[0]);  //get coordinate x
+    //console.log(drwanItemsGJ.features) // 
+    //console.log(drwanItemsGJ.features[0].geometry); // get geometry first marker
+    //console.log(drwanItemsGJ.features[0].geometry.coordinates[0]);  //get coordinate x
     const coords = e.layer._latlng;
-    console.log(coords) // get coordinates
+    console.log(coords) // get coordinates of the last marker
+
+ //   popup entry data, form
+   const tempMarker = drawnItems.addLayer(e.layer);
+ 
+   const popupContent = '<form role="form" id="form" enctype="multipart/form-data" class = "form-horizontal" onsubmit="addMarker()">'+
+   '<div class="form-group">'+
+       '<label class="control-label col-sm-5"><strong>Data: </strong></label>'+
+       '<input type="date" placeholder="Required" id="date" name="date" class="form-control"/>'+ 
+   '</div>'+
+   '<div class="form-group">'+
+   '<label class="control-label col-sm-5"><strong>Description: </strong></label>'+
+   '<textarea class="form-control" rows="6" id="descrip" name="descript"></textarea>'+
+  '</div>' +
+   '<div class="form-group">'+
+     '<div style="text-align:center;" class="col-xs-4 col-xs-offset-2"><a href="index.html" type="button" class="btn">Cancel<a/></div>'+
+     '<div style="text-align:center;" class="col-xs-4"><button type="submit" value="submit" class="btn btn-primary trigger-submit">Submit</button></div>'+
+   '</div>'+
+   '</form>';
+   tempMarker.bindPopup(popupContent,{
+        keepInView: true,
+        closeButton: false
+        }).openPopup();
+   
+        $("#form").submit(function(e){
+            e.preventDefault();
+            console.log("didnt submit");
+            var date =$("#date").val();
+            console.log(date);
+    });
   });
-  
 }
 
 
@@ -85,6 +108,5 @@ const mapId = document.getElementById('map');
 function fullScreenView(){
   mapId.requestFullscreen();
 }
-
 
 
