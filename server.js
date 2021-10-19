@@ -2,7 +2,7 @@
 const express = require("express");
 const app = express();
 const { Pool } = require('pg')
-const {  queryLayer } = require('./controllers/layerController');
+const {  queryLayer, getGeojson } = require('./controllers/layerController');
 const layerRouter = require('./routes/api');
 
 // require('dotenv').config()
@@ -10,16 +10,16 @@ const layerRouter = require('./routes/api');
 //middleware
 //using json we need to parse the data
 app.use(express.json())
-
+//setting middleware
+app.use(express.static('public')); //Serves resources from public folder
 
 
 // routes
-app.get('/', function (req, res) {
-  res.render('index')
-});
+//Serves all the request which includes /images in the url from Images folder
+app.use('/', express.static(__dirname));
 
 //new routes
-app.use('/api', layerRouter); 
+app.use('/api', layerRouter); // http://localhost:4000/api/layers/layer
 
 
 // initializating the server

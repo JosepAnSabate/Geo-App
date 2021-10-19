@@ -32,7 +32,7 @@ const getGeojson = (request, response, next) => {
             let row = _.omit(element, 'geom');
             rowNoGeom.push(row);
         });
-        let geojson = GeoJSON.parse(res.rows, { Point: ['lat', 'lng'] });
+        let geojson = GeoJSON.parse(res.rows, { Point: ['lng', 'lat'] }); // a leaflet lat long va al reves
         console.log(geojson)
         response.json(geojson);
         

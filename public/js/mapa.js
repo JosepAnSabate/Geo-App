@@ -1,4 +1,4 @@
-const { getGeojson } = require("../../controllers/layerController");
+//const { getGeojson } = require("../../controllers/layerController");
 
 function init() {
     const map = L.map('map', {
@@ -28,9 +28,17 @@ function init() {
       controlCapes = L.control.layers(mapaBase, null, {collapsed: false});
      controlCapes.addTo(map)
 
-     // get geojson from postgis//
-     // L.toGeoJSON(getGeojson).addTo(map); //
+    // get geojson from postgis//
+    // Fetch stores from API
+    async function getPoints() {
+      const res = await fetch('/api/layers/layer');
+      const data = await res.json(); // convert to json
 
+      console.log(data);
+      L.geoJSON(data).addTo(map);
+    };
+    getPoints();
+    
       // show your current location
       L.control.locate().addTo(map);
       // add map scale
