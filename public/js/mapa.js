@@ -46,7 +46,7 @@ function init() {
       //FULL SCREEN 
       L.control.fullscreen().addTo(map);
       // map coordinates mouse
-    map.on('mousemove', function(e) {
+      map.on('mousemove', function(e) {
       //console.log(e)
       const latitude = e.latlng.lat.toFixed(5);
       const longitude = e.latlng.lng.toFixed(5);
