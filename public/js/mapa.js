@@ -27,7 +27,15 @@ function init() {
       };
       controlCapes = L.control.layers(mapaBase, null, {collapsed: false});
      controlCapes.addTo(map)
+      // icon markers
+    const geoIcon = L.icon({
+      iconUrl: './img/geology_2.png',
 
+      iconSize:     [38, 95], // size of the icon
+      iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+      popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+    });
+    let mark = L.marker([41.5,1.6], {icon: geoIcon}).addTo(map)
     // get geojson from postgis//
     // Fetch stores from API
     async function getPoints() {
@@ -35,7 +43,7 @@ function init() {
       const data = await res.json(); // convert to json
 
       console.log(data);
-      L.geoJSON(data).addTo(map);
+      L.geoJSON(data, {icon: geoIcon}).addTo(map);
     };
     getPoints();
     
@@ -52,8 +60,8 @@ function init() {
       const longitude = e.latlng.lng.toFixed(5);
       $('.coordinate').html(`Latitud: ${latitude}     Longitud:${longitude}`)
     })
-
-    // DRAWN MARKERS//
+    
+    // DRAWN NEW MARKERS//
   // initiate a variable to store the drawn items:
   // FeatureGroup is to store editable layers
   let drawnItems = new L.FeatureGroup();
