@@ -35,7 +35,7 @@ function init() {
       iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
       popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
     });
-    let mark = L.marker([41.5,1.6], {icon: geoIcon}).addTo(map)
+    //let mark = L.marker([41.5,1.6], {icon: geoIcon}).addTo(map)
     // get geojson from postgis//
     // Fetch stores from API
     async function getPoints() {
