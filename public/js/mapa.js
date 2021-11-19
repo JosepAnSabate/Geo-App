@@ -37,8 +37,12 @@ function init() {
       console.log(data);
       L.geoJSON(data, {
         onEachFeature: function (feature, layer) {
-          layer.bindPopup('<h4>'+feature.properties.name+`</h4>
-          <p>Description: `+feature.properties.descrption+'</p>');
+          layer.bindPopup('<h4 class="popup">'+feature.properties.name+`</h4>
+          <hr class="popup">
+          <p class="popup"><span class="popup-description">Description: </span>`+feature.properties.description+`</p>
+          <p id="popupcoord">Lat: `+feature.geometry.coordinates[1]+', Long:'+
+          feature.geometry.coordinates[0]+'</p>'
+          );
         }
       }).addTo(map);
     };
@@ -56,7 +60,7 @@ function init() {
       //console.log(e)
       const latitude = e.latlng.lat.toFixed(5);
       const longitude = e.latlng.lng.toFixed(5);
-      $('.coordinate').html(`Latitud: ${latitude}     Longitud:${longitude}`)
+      $('.coordinate').html(`Lat: ${latitude}     Long: ${longitude}`)
     })
     
     // DRAWN NEW MARKERS//
