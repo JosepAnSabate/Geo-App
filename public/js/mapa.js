@@ -27,15 +27,7 @@ function init() {
       };
       controlCapes = L.control.layers(mapaBase, null, {collapsed: false});
      controlCapes.addTo(map)
-      // icon markers
-    const geoIcon = L.icon({
-      iconUrl: './img/geology_2.png',
-
-      iconSize:     [38, 95], // size of the icon
-      iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
-      popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
-    });
-    //let mark = L.marker([41.5,1.6], {icon: geoIcon}).addTo(map)
+    
     // get geojson from postgis//
     // Fetch stores from API
     async function getPoints() {
@@ -43,10 +35,16 @@ function init() {
       const data = await res.json(); // convert to json
 
       console.log(data);
-      L.geoJSON(data, {icon: geoIcon}).addTo(map);
+      L.geoJSON(data, {
+        onEachFeature: function (feature, layer) {
+          layer.bindPopup('<h4>'+feature.properties.name+`</h4>
+          <p>Description: `+feature.properties.descrption+'</p>');
+        }
+      }).addTo(map);
     };
     getPoints();
-    
+
+
       // show your current location
       L.control.locate().addTo(map);
       // add map scale
