@@ -1,6 +1,6 @@
 //const { getGeojson } = require("../../controllers/layerController");
 
-function init() {
+function init(data) {
     const map = L.map('map', {
       // drawControl: true, // draw tools, more down
       center: [41.6863, 1.6382],
@@ -33,21 +33,23 @@ function init() {
     async function getPoints() {
       const res = await fetch('/api/layers/layer');
       const data = await res.json(); // convert to json
-
+      
       console.log(data);
       L.geoJSON(data, {
         onEachFeature: function (feature, layer) {
           layer.bindPopup('<h4 class="popup">'+feature.properties.name+`</h4>
-          <hr class="popup">
-          <p class="popup"><span class="popup-description">Description: </span>`+feature.properties.description+`</p>
-          <p id="popupcoord">Lat: `+feature.geometry.coordinates[1]+', Long:'+
-          feature.geometry.coordinates[0]+'</p>'
+            <hr class="popup">
+            <p class="popup"><span class="popup-description">Description: </span>`+feature.properties.description+`</p>
+            <p id="popupcoord">Lat: `+feature.geometry.coordinates[1]+', Long:'+
+            feature.geometry.coordinates[0]+'</p>'
           );
-        }
+          // data uotside map
+          //document.getElementById("stats").innerHTML = feature.properties.name
+      }
       }).addTo(map);
+     
     };
     getPoints();
-
 
       // show your current location
       L.control.locate().addTo(map);
@@ -95,29 +97,43 @@ function init() {
  //   popup entry data, form
    const tempMarker = drawnItems.addLayer(e.layer);
  
-   const popupContent = '<form role="form" id="form" enctype="multipart/form-data" class = "form-horizontal" onsubmit="addMarker()">'+
-   '<div class="form-group">'+
-   '<label class="control-label col-sm-5"><strong>Description: </strong></label>'+
-   '<textarea class="form-control" rows="6" id="descrip" name="descript"></textarea>'+
-  '</div>' +
-  '<input style="display: none;" type="text" id="lat" name="lat" value="'+coords.lat.toFixed(6)+'" />'+
-  '<input style="display: none;" type="text" id="lng" name="lng" value="'+coords.lng.toFixed(6)+'" />'+
-   '<div class="form-group">'+
-     '<div style="text-align:center;" class="col-xs-4 col-xs-offset-2"><a href="index.html" type="button" class="btn">Cancel<a/></div>'+
-     '<div style="text-align:center;" class="col-xs-4"><button type="submit" value="submit" class="btn btn-primary trigger-submit">Submit</button></div>'+
-   '</div>'+
-   '</form>';
+   const popupContent = 
+   '<form id="myForm" class="form"  enctype="multipart/form-data">'+
+      '<label class="control-label col-sm-5"><strong>Title: </strong></label>'+
+      '<textarea class="form-control" rows="1" id="title" name="title"></textarea>'+
+      
+      '<label class="control-label col-sm-5"><strong>Description: </strong></label>'+   
+      '<textarea class="form-control" rows="3" id="description" name="description"></textarea>'+ 
+      
+      '<input style="display: none;" type="text" id="lat" name="lat" value="'+coords.lat.toFixed(6)+'" />'+
+      '<input style="display: none;" type="text" id="lng" name="lng" value="'+coords.lng.toFixed(6)+'" />'+
+
+      '<div style="text-align:center;" class="col-xs-4 col-xs-offset-2"><a href="index.html" type="button" class="btn">Cancel<a/></div>'+
+      '<div style="text-align:center;" class="col-xs-4">'+
+      '<button  form="myForm" type="submit" value="submit" class="btn btn-primary trigger-submit">Submit</button></div>'
+      
+      +'</form>';
+
    tempMarker.bindPopup(popupContent,{
         keepInView: true,
         closeButton: false
         }).openPopup();
-   
-        $("#form").submit(function(e){
-            e.preventDefault();
-            console.log("didnt submit");
-            var date =$("#date").val();
-            console.log(date);
-    });
+
+  let title = document.getElementById('title')
+  let description = document.getElementById("description")
+  let lat = document.getElementById('lat')
+  let lng = document.getElementById('lng')
+  
+  myForm.addEventListener('submit', (e)=>{
+    e.preventDefault(); // refresh the page when its submitted
+    //console.log("Submitted");
+    let formData = { //js object
+        name: title.value,
+        description: description.value,
+        geom: 'POINT('+lat.value +' '+lng.value+')'
+    }
+    console.log(formData);
+        })
   });
 }
 

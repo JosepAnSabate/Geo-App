@@ -1,0 +1,16 @@
+'<form role="form" id="form" enctype="multipart/form-data" class = "form-horizontal" onsubmit="addMarker()">'+
+    '<div class="form-group">'+
+            '<label class="control-label col-sm-5"><strong>Title: </strong></label>'+
+            '<textarea class="form-control" rows="1" id="descrip" name="descript"></textarea>'+
+    '</div>' +   
+    '<div class="form-group">'+
+        '<label class="control-label col-sm-5"><strong>Description: </strong></label>'+
+        '<textarea class="form-control" rows="3" id="descrip" name="descript"></textarea>'+
+    '</div>' +
+    '<input style="display: none;" type="text" id="lat" name="lat" value="'+coords.lat.toFixed(6)+'" />'+
+    '<input style="display: none;" type="text" id="lng" name="lng" value="'+coords.lng.toFixed(6)+'" />'+
+    '<div class="form-group">'+
+        '<div style="text-align:center;" class="col-xs-4 col-xs-offset-2"><a href="index.html" type="button" class="btn">Cancel<a/></div>'+
+        '<div style="text-align:center;" class="col-xs-4"><button type="submit" value="submit" class="btn btn-primary trigger-submit">Submit</button></div>'+
+    '</div>'+
+ '</form>';

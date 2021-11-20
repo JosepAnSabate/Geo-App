@@ -19,11 +19,11 @@ const pool = new Pool({
 //let layerName = request.params.layername;
 // more than 1 layerSELECT * FROM ${layername};
 // Almacenamos en una constante la función que realiza la llamada y devuelve el archivo.
-const getGeojson = (request, response, next) => {
+const getGeojson = async (request, response, next) => {
     // Almacenamos la consulta SQL
     let queryLayer = 'SELECT id, name, description, ST_X(geom) as lng, ST_Y(geom) as lat FROM pointstb;'
 
-    pool.query(queryLayer, (err, res) => {
+   await pool.query(queryLayer, (err, res) => {
         if (err) {
             return console.error('Error ejecutando la consulta. ', err.stack)
         }
@@ -31,15 +31,41 @@ const getGeojson = (request, response, next) => {
         res.rows.forEach(element => {
             let row = _.omit(element, 'geom');
             rowNoGeom.push(row);
-        });
+    });
         let geojson = GeoJSON.parse(res.rows, { Point: ['lng', 'lat'] }); // a leaflet lat long va al reves
-        console.log(geojson)
-        response.json(geojson);
-        
+        console.log(geojson);
+        response.json(geojson);   
     })
 }
 
+// Post layer
+const postGeojson = async (request, response) => {
+    //console.log(request.body)
+    const {name, description, geom} = request.body;
+    //let resLayer = 'INSERT INTO pointstb (name, description, geom) VALUES ($1, $2, $3)', [name, description, geom];
+    const res = await pool.query('INSERT INTO pointstb (name, description, geom) VALUES ($1, $2, $3)', [name, description, geom]);
+    console.log(res);
+    //const response = await pool.query(`INSERT INTO pointstb (name, description, geom) VALUES
+    //($1, $2, $3)`, [name, description, geom])
+   response.send('file created')
+}
+
+
+// (request, response, next) => {
+//     // Almacenamos la consulta SQL
+//     // let queryLayer = `INSERT INTO pointstb (name, description, geom) VALUES
+//     //   (${formData.name}, ${formData.description}, ${geom})`
+//     let queryLayer = `INSERT INTO pointstb (name, description, geom) VALUES
+//       ('prova', 'prrrrrrrr', 'POINT(41.660316 1.502044)')`
+
+//     pool.query(queryLayer, (err, res) => {
+//         if (err) {
+//             return console.error('Error ejecutando la consulta. ', err.stack)
+//         }   
+//     })
+// }
 
 module.exports = {
-    getGeojson
+    getGeojson,
+    postGeojson
 }
