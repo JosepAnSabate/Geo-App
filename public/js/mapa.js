@@ -1,6 +1,5 @@
-//const { getGeojson } = require("../../controllers/layerController");
 
-function init(data) {
+function  init(data) {
     const map = L.map('map', {
       // drawControl: true, // draw tools, more down
       center: [41.6863, 1.6382],
@@ -98,7 +97,7 @@ function init(data) {
    const tempMarker = drawnItems.addLayer(e.layer);
  
    const popupContent = 
-   '<form id="myForm" class="form"  enctype="multipart/form-data">'+
+   '<form id="myForm" methos="" action="" class="form"  enctype="multipart/form-data">'+
       '<label class="control-label col-sm-5"><strong>Title: </strong></label>'+
       '<textarea class="form-control" rows="1" id="title" name="title"></textarea>'+
       
@@ -120,19 +119,37 @@ function init(data) {
         }).openPopup();
 
   let title = document.getElementById('title')
-  let description = document.getElementById("description")
+  let descript = document.getElementById("description")
   let lat = document.getElementById('lat')
   let lng = document.getElementById('lng')
   
   myForm.addEventListener('submit', (e)=>{
     e.preventDefault(); // refresh the page when its submitted
     //console.log("Submitted");
+    
     let formData = { //js object
         name: title.value,
-        description: description.value,
+        description: descript.value,
         geom: 'POINT('+lat.value +' '+lng.value+')'
     }
+    let name = formData.name;
+    let description = formData.description;
+    let geom = formData.geom;
+
     console.log(formData);
+    try {
+      //const body = { name, description, geom };
+      const response =  fetch("http://localhost:4000/api/layers/layer", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData)//{name, description, geom}
+        
+      });
+      //console.log(response);
+    window.location = "/"; // refresh and show the changes
+    } catch (err) {
+      console.error(err.message);
+    } 
         })
   });
 }

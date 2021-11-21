@@ -12,6 +12,7 @@ router.route("/").get(layer.getGeojson);
 
 //post
 router.post('/layers/layer', layer.postGeojson)
-    
+//router.route("/").post(layer.postGeojson)    
+
 // Exportamos el código 
 module.exports = router;
