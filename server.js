@@ -7,7 +7,6 @@ const layerRouter = require('./routes/api');
 const dotenv = require("dotenv");
 // load enviornment variables
 dotenv.config({ path: './config/config.env'});
-
 // require('dotenv').config()
 
 //middleware
@@ -15,10 +14,10 @@ dotenv.config({ path: './config/config.env'});
 app.use(express.json())
 //setting middleware
 app.use(express.static('public')); //Serves resources from public folder
-app.use(express.urlencoded({extended: false}));//data a trraves d'un form, coverteic form to object
+app.use(express.urlencoded({extended: false}));//data a traves d'un form, coverteic form to object
 
 // routes
-//Serves all the request which includes /images in the url from Images folder
+//Serves all the request 
 app.use('/', express.static(__dirname));
 
 //new routes

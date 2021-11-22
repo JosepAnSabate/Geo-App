@@ -38,6 +38,13 @@ const getGeojson = async (request, response, next) => {
     })
 }
 
+// GET  geojson by name
+const getGeojsonByName = async (request, response) => {
+    const name = request.params.name;//url
+    const res = await pool.query(`SELECT * FROM pointstb WHERE name = $1;`, [name]);
+    response.json(res.rows)
+}
+
 // Post layer
 const postGeojson = async (request, response) => {
   try{
@@ -54,13 +61,46 @@ const postGeojson = async (request, response) => {
             FormData: {name, description, geom}
         }
     })
-    
+    //return console.log(response.status) //201 means something crated
 } catch (e) {
     console.log(e)
 }
 }
 
+const putGeojsonByName = async (request, response) => {
+    try {
+        const name = request.params.name;// url
+        const {newName, newDescription} = request.body;
+        let queryPut = `UPDATE pointstb SET name = $1, 
+        description = $2 WHERE name = $3;`;
+        let queryFields = [newName, newDescription, name]
+        const res = await pool.query(queryPut, queryFields)
+        console.log(res);
+
+        response.json({
+            message: 'Site update',
+            body: {
+                updatedData: {newName, newDescription, name}
+            }
+        });
+    } catch (e) {
+        console.log(e)
+    }
+}
+
+const deleteGeojsonByName = async(request, response) => {
+  //res.send('User deleted' + request.params.name); 
+  const name = request.params.name; //url
+  const res = await pool.query('DELETE FROM pointstb WHERE name= $1;', [name]);
+  console.log(res)
+  response.json(`User ${name} deleted`)
+}
+
+
 module.exports = {
     getGeojson,
-    postGeojson
+    getGeojsonByName,
+    postGeojson,
+    putGeojsonByName,
+    deleteGeojsonByName,
 }

@@ -23,3 +23,10 @@ CREATE TABLE pointstb (
 
 INSERT INTO pointstb (name, description, geom) VALUES 
   ('aflorament_0', 'bondiaaaaaa', 'POINT(41.660316 1.432044)')
+
+UPDATE pointstb SET name = 'testfinal', description = 'testdescript'
+WHERE name = 'testorigen';
+
+SELECT * FROM pointstb WHERE name = testfinal;
+
+DELETE FROM pointstb WHERE name=aflorament_1;

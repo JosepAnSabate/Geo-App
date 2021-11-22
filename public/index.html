@@ -47,7 +47,34 @@
     <!-- <div>
       <p id="stats"></p> 
     </div> -->
+    <table class="table mt-5 text-center">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Edit</th>
+          <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><textarea name="name" id="name" cols="8" rows="1"></textarea></td>
+        <td><button onclick="openForm()" type="button" class="btn btn-warning" 
+          data-toggle="modal" data-target="">Edit </button></td>
+        <td><button type="button" class="btn btn-danger" onclick="deleteButton()">Delete</button></td>
+      </tr>
+    </tbody>
+  </table>
     
+  <div class="form-popup" id="myFormEdit">
+    <form action="" class="form-container">
+      <label><b>New name: </b></label>
+      <input id="new-name" type="text" placeholder="Enter the new nane" name="" required>
+  
+      <label><b>New descrption: </b></label>
+      <input id="new-description" type="text" placeholder="Enter the new description" name="" required>
+  
+      <button type="submit" class="btn" onclick="editButton()">Edit</button>
+      <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
   <!-- location plugin https://www.npmjs.com/package/leaflet.locatecontrol-->
   <script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol/dist/L.Control.Locate.min.js" charset="utf-8"></script> 
   <!-- jquery  -->
