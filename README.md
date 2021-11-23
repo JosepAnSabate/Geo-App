@@ -1,6 +1,8 @@
 # Geo-app
 ## RESTful API using Node, Express, Postgres, Mapbox 
+
 <br>
+
 * Geo-app allows the user to create edit and delete locations and descriptions on a geological,  orthographic and topographic maps from the ICGC.
 
 <br>
@@ -17,6 +19,7 @@ Get one location, delete, update 	/api/layers/layer/:name
 
 ```
 <br>
+
 <p align="center">
 <img   src="./img/uigeo2.PNG">
 </p>
