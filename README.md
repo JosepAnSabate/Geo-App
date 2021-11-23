@@ -4,6 +4,7 @@
 * Geo-app allows the user to create edit and delete locations and descriptions on a geological,  orthographic and topographic maps from the ICGC.
 
 <br>
+
 ```bash
 # Server on localhost:4000
 npm run dev (nodemon)
