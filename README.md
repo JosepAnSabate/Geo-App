@@ -1,5 +1,6 @@
 # Geo-app
 ## RESTful API using Node, Express, Postgres, Mapbox 
+
 * Geo-app allows the user to create edit and delete locations and descriptions on a geological,  orthographic and topographic maps from the ICGC.
 
 ```bash
