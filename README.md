@@ -16,6 +16,6 @@ GET all locations    		/api/layers/layer
 Get one location, delete, update 	/api/layers/layer/:name
 
 ```
-
-<img align="center"  src="./img/uigeo2.PNG">
-![scheme](./img/uigeo2.PNG)
+<p align="center">
+<img   src="./img/uigeo2.PNG">
+</p>
