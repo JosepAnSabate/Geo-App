@@ -6,6 +6,7 @@ body{
     width: 80%;
     background-color: #ffffff;
     margin: auto; /* centra mapa */
+    z-index: 2;
 }
 
 
@@ -116,3 +117,17 @@ hr.popup{
   font-size: 14px;
   margin-top: 8px;
 }
+
+/* Getfeaturesinfo */
+#features {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 50%;
+  overflow: auto;
+  background: rgba(255, 255, 255, 0.8);
+  }
+  #map canvas {
+  cursor: crosshair;
+  }

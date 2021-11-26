@@ -14,6 +14,7 @@ function  init(data) {
       maxZoom: 14,
       attribution: 'Institut Cartogràfic i Geològic de Catalunya CC-BY-SA-3'
     });
+    
     const ortoICGC =
       L.tileLayer('https://geoserveis.icgc.cat/icc_mapesmultibase/noutm/wmts/orto/GRID3857/{z}/{x}/{y}.png', {
         maxZoom: 19,
@@ -50,19 +51,23 @@ function  init(data) {
     };
     getPoints();
 
-      // show your current location
-      L.control.locate().addTo(map);
-      // add map scale
-      L.control.scale({position: 'bottomleft'}).addTo(map)
-      //FULL SCREEN 
-      L.control.fullscreen().addTo(map);
-      // map coordinates mouse
-      map.on('mousemove', function(e) {
-      //console.log(e)
-      const latitude = e.latlng.lat.toFixed(5);
-      const longitude = e.latlng.lng.toFixed(5);
-      $('.coordinate').html(`Lat: ${latitude}     Long: ${longitude}`)
-    })
+    // show your current location
+    L.control.locate().addTo(map);
+    // add map scale
+    L.control.scale({position: 'bottomleft'}).addTo(map)
+    //FULL SCREEN 
+    L.control.fullscreen().addTo(map);
+    // map coordinates mouse
+    map.on('mousemove', function(e) {
+    //console.log(e)
+    const latitude = e.latlng.lat.toFixed(5);
+    const longitude = e.latlng.lng.toFixed(5);
+    $('.coordinate').html(`Lat: ${latitude}     Long: ${longitude}`)
+    });
+
+    // get feature info
+    
+      
     
     // DRAWN NEW MARKERS//
   // initiate a variable to store the drawn items:
@@ -70,7 +75,7 @@ function  init(data) {
   let drawnItems = new L.FeatureGroup();
   map.addLayer(drawnItems);
 
-//create drawing controls and toolbar
+  //create drawing controls and toolbar
   const drawControl = new L.Control.Draw({
     draw: {
       circle: false,
