@@ -1,5 +1,5 @@
 # Geo-app
-## RESTful API using Node, Express, Postgres, Mapbox 
+## RESTful API using Node, Express, Postgres, Leaflet
 
 <br>
 
