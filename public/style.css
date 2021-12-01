@@ -131,3 +131,25 @@ hr.popup{
   #map canvas {
   cursor: crosshair;
   }
+
+  /* Descripcio, get features info */
+  #geologicDescription {     
+    display: block;
+    position: relative;
+    margin: 0px auto;
+    /* width: 40%; */
+    min-width: 350px;
+    padding: 5px;
+    border: none;
+    border-radius: 7px;
+    font-size: 20px;
+    font-family: 'PT Serif', serif;
+    text-align: center;
+    color: #000;
+    /* background: #D6EAF8; */
+  
+}
+
+td.leftTabEl {
+    text-align: left;
+  }

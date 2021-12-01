@@ -36,9 +36,8 @@
   <title>Geoapp</title>
   <!-- JS -->
     <script src="js/mapa.js"></script>
-    
+    <script src="js/wms.js"></script>
 </head>
-
 <body onload="init()">
     <br><br>
     <div id="map"> </div> 
@@ -67,6 +66,8 @@
       </tr>
     </tbody>
   </table>
+
+  <pre class="geologicDescription" id="geologicDescription"></pre>
     
   <div class="form-popup" id="myFormEdit">
     <form action="" class="form-container">
@@ -78,6 +79,8 @@
   
       <button type="submit" class="btn" onclick="editButton()">Edit</button>
       <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+      </form>
+  </div>
   <!-- location plugin https://www.npmjs.com/package/leaflet.locatecontrol-->
   <script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol/dist/L.Control.Locate.min.js" charset="utf-8"></script> 
   <!-- jquery  -->
