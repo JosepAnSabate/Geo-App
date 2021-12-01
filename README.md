@@ -21,6 +21,6 @@ Get one location, delete, update 	/api/layers/layer/:name
 <br>
 
 <p align="center">
-<img   src="./img/mapaapp.PNG">
+<img   src="./img/appmapa.PNG">
 <img   src="./img/desc.PNG">
 </p>
