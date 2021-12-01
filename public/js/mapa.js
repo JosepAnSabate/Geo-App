@@ -67,6 +67,7 @@ function  init(data) {
 
     
 // Get features info from wms
+//https://flexberry.github.io/Leaflet-WMS/
 // ICGC GET CAPABILITIES:   https://geoserveis.icgc.cat/arcgis/services/geologic/icgc_mg50m/MapServer/WMSServer?request=GetCapabilities&service=WMS
 // WMS function from wms.js
 const geologic = new L.TileLayer.WMS("https://geoserveis.icgc.cat/arcgis/services/geologic/icgc_mg50m/MapServer/WMSServer?", {
