@@ -3,7 +3,7 @@
 
 <br>
 
-* Geo-app allows the user to create edit and delete locations and descriptions on a geological,  orthographic and topographic maps from the ICGC being able to consult the geologic desciption.
+* Geo-app allows the user to create edit and delete locations and descriptions on a geological,  orthographic and topographic maps being able to consult the geologic desciption from the ICGC.
 
 <br>
 
