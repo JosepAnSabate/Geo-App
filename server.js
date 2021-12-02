@@ -5,6 +5,7 @@ const { Pool } = require('pg')
 const {  queryLayer, getGeojson, postGeojson } = require('./controllers/layerController');
 const layerRouter = require('./routes/api');
 const dotenv = require("dotenv");
+const path = require('path'); // multiplataforma dels path linux windows
 // load enviornment variables
 dotenv.config({ path: './config/config.env'});
 // require('dotenv').config()
@@ -26,6 +27,7 @@ app.use('/api', layerRouter); // http://localhost:4000/api/layers/layer
 
 // initializating the server
 const PORT = process.env.PORT || 4000;
+
 app.listen(PORT, () => 
     console.log(`Server runing in ${process.env.NODE_ENV} mode on port ${PORT}`)
 );
