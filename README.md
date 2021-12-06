@@ -23,8 +23,8 @@ GET all locations    		http://localhost:4000/api/layers/layer
 Get one location, delete, update 	http://localhost:4000/api/layers/layer/:name
 
 # Api routes (production)
-GET all locations    		[https://visualatles.cat/api/layers/layer](https://visualatles.cat/api/layers/layer)
-Get one location, delete, update 	[https://visualatles.cat/api/layers/layer/:name](https://visualatles.cat/api/layers/layer/Mostra_103)
+GET all locations    		https://visualatles.cat/api/layers/layer
+Get one location, delete, update 	https://visualatles.cat/api/layers/layer/:name
 
 ```
 <br>
