@@ -1,0 +1,122 @@
+ssh -i cursa.pem ubuntu@34.249.25.205
+
+sudo apt update && sudo apt upgrade -y
+sudo apt install postgresql postgresql-contrib -y
+
+sudo -i -u postgres
+psql
+\du veure users
+\l veure db
+ \conninfo mostra db i user de la conexió
+\d taules db
+\q
+
+createuser --interactive
+ubuntu
+
+exit
+
+psql -d namedb
+\q
+
+cd /etc/postgresql/12/main/
+sudo cat pg_hba.conf md5 require password
+
+psql -d postgres
+ALTER USER ubuntu PASSWORD 'celdoni';
+\q
+
+2. Migrate Database Scheme & data
+pg_dump -U postgres -f geoapp.pgsql -C geoapp
+scp -i [path to pem file] [path to yelp.pgsql] username@[server-ip]:[directory to copy file to]
+C:\Users\34639\Desktop\aws>scp -i cursa.pem geoapp.pgsql ubuntu@34.249.25.205:/home/ubuntu
+ls i veurem geoapp.pgsql
+
+ psql -d postgres
+create database geoapp;
+\q
+
+apt-get install postgis
+
+psql geoapp < /home/ubuntu/geoapp.pgsql
+
+3. Copy github repo to sever
+cd ~
+mkdir apps
+cd apps
+mkdir geoapp-app
+cd geoapp-app
+git clone https://github.com/JosepAnSabate/Geo-App.git .
+
+4. Install Node
+curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
+sudo apt-get install -y nodejs
+npm install
+
+5. Install and Configure PM2
+sudo npm install pm2 -g
+pm2 start server.js --name geoapp-app
+pm2 startup i paste the command
+pm2 save
+
+6.react................
+
+7.Install and Configure NGINX
+sudo apt install nginx -y
+sudo systemctl enable nginx
+systemctl status nginx
+
+cd /etc/nginx/sites-available
+sudo cp default
+sudo cp default visualatles.cat
+sudo vi visualatles.cat
+
+
+server {
+        listen 80;
+        listen [::]:80;
+
+        server_name visualatles.cat 34.249.25.205;
+
+        location / {
+                 proxy_set_header X-Real-IP $remote_addr;
+                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                proxy_set_header Host $http_host;
+                proxy_set_header X-NginX-Proxy true;
+                proxy_pass http://localhost:4000/;
+                proxy_redirect off;
+                proxy_http_version 1.1;
+                proxy_set_header Upgrade $http_upgrade;
+                proxy_set_header Connection "upgrade";
+        }
+}
+        
+:wq per sortir
+
+sudo ln -s /etc/nginx/sites-available/visualatles.cat /etc/nginx/sites-enabled/
+sudo systemctl restart nginx
+sudo nginx -t     
+
+8.Associar els dns amb els enllaços de route 53 damazon
+
+9. Configure Environment Variables
+falla conexio:
+ pm2 logs
+pm2 restart 0
+
+10.firewall no necessari a aws
+sudo ufw status
+sudo ufw allow ssh
+sudo ufw allow http
+sudo ufw allow https
+sudo ufw enable
+sudo ufw status                           
+
+11. Enable SSL with Let's Encrypt
+sudo snap install --classic certbot
+sudo ln -s /snap/bin/certbot /usr/bin/certbot
+sudo certbot --nginx
+            
+12. db a internet
+http://localhost:4000/api/layers/layer/${nameLayer.value}
+https://visualatles.cat/api/layers/layer/${nameLayer.value}      i pm2 restart 0
