@@ -29,4 +29,4 @@ WHERE name = 'testorigen';
 
 SELECT * FROM pointstb WHERE name = testfinal;
 
-DELETE FROM pointstb WHERE name=aflorament_1;
+DELETE FROM pointstb WHERE name=ebre;

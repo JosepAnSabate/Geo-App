@@ -1,5 +1,10 @@
 # Geo-app
-## RESTful API using Node, Express, Postgres, Leaflet
+
+REST API using Node, Express, Postgres, Leaflet.
+Hosted on AWS using NGINX as a webserver.
+
+
+[https://visualatles.cat](https://visualatles.cat)
 
 <br>
 
@@ -13,9 +18,13 @@ npm run dev (nodemon)
 or
 npm start
 
-# Routes Postman (Server)
-GET all locations    		/api/layers/layer
-Get one location, delete, update 	/api/layers/layer/:name
+# Api routes (development)
+GET all locations    		http://localhost:4000/api/layers/layer
+Get one location, delete, update 	http://localhost:4000/api/layers/layer/:name
+
+# Api routes (production)
+GET all locations    		[https://visualatles.cat/api/layers/layer](https://visualatles.cat/api/layers/layer)
+Get one location, delete, update 	[https://visualatles.cat/api/layers/layer/:name](https://visualatles.cat/api/layers/layer/Mostra_103)
 
 ```
 <br>
