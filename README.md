@@ -8,7 +8,7 @@ Hosted on AWS using NGINX as a webserver.
 
 <br>
 
-* Geo-app allows the user to create edit and delete locations and descriptions on a geological,  orthographic and topographic maps being able to consult the geologic description from the ICGC WMS. 
+* Geo-app allows the user to create edit and delete locations and descriptions on a geological,  orthographic and topographic maps being able to consult the geologic description from the ICGC WMS using GetFeatureInfo. 
 
 <br>
 
