@@ -1,19 +1,20 @@
-// Calling Express and assign it to the app
 const express = require("express");
 const app = express();
-const { Pool } = require('pg')
+const { Pool } = require('pg');
 const {  queryLayer, getGeojson, postGeojson } = require('./controllers/layerController');
 const layerRouter = require('./routes/api');
-const dotenv = require("dotenv");
+const cors = require("cors");
 const path = require('path'); // multiplataforma dels path linux windows
 // load enviornment variables
+const dotenv = require("dotenv");
 dotenv.config({ path: './config/config.env'});
-// require('dotenv').config()
+//require('dotenv').config('./config/config.env');
+
 
 //middleware
+app.use(cors());
 //using json we need to parse the data
-app.use(express.json())
-//setting middleware
+app.use(express.json());
 app.use(express.static('public')); //Serves resources from public folder
 app.use(express.urlencoded({extended: false}));//data a traves d'un form, coverteic form to object
 

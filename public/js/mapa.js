@@ -258,7 +258,7 @@ function deleteButton ()  {
         //body: JSON.stringify(nameLayerdel)//{name, description, geom}
       });
       console.log(response);
-    window.location = "/"; // refresh and show the changes
+   // window.location = "/"; // refresh and show the changes
     } catch (err) {
       console.error(err.message);
     } 

@@ -22,7 +22,7 @@ CREATE TABLE pointstb (
     );
 
 INSERT INTO pointstb (name, description, geom) VALUES 
-  ('aflorament_0', 'bondiaaaaaa', 'POINT(41.660316 1.432044)')
+  ('postgresprova', 'bondiaaaaaa', 'POINT(41.00 1.00)')
 
 UPDATE pointstb SET name = 'testfinal', description = 'testdescript'
 WHERE name = 'testorigen';
