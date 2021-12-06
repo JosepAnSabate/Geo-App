@@ -8,7 +8,7 @@ Hosted on AWS using NGINX as a webserver.
 
 <br>
 
-* Geo-app allows the user to create edit and delete locations and descriptions on a geological,  orthographic and topographic maps being able to consult the geologic desciption from the ICGC.
+* Geo-app allows the user to create edit and delete locations and descriptions on a geological,  orthographic and topographic maps being able to consult the geologic description from the ICGC WMS. 
 
 <br>
 
@@ -28,6 +28,9 @@ Get one location, delete, update 	https://visualatles.cat/api/layers/layer/:name
 
 ```
 <br>
+
+Geologic WMS: https://geoserveis.icgc.cat/arcgis/services/geologic/icgc_mg50m/MapServer/WMSServer?
+Source: [https://www.icgc.cat/Administracio-i-empresa/Serveis/Geologia/WMS-Cartografia-geologica](https://www.icgc.cat/Administracio-i-empresa/Serveis/Geologia/WMS-Cartografia-geologica)
 
 <p align="center">
 <img   src="./img/appmapa.PNG">
