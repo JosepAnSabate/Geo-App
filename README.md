@@ -29,7 +29,8 @@ Get one location, delete, update 	https://visualatles.cat/api/layers/layer/:name
 ```
 <br>
 
-Geologic WMS: https://geoserveis.icgc.cat/arcgis/services/geologic/icgc_mg50m/MapServer/WMSServer?
+Geologic WMS for GetFeatuesInfo: https://geoserveis.icgc.cat/arcgis/services/geologic/icgc_mg50m/MapServer/WMSServer? <br>
+
 Source: [https://www.icgc.cat/Administracio-i-empresa/Serveis/Geologia/WMS-Cartografia-geologica](https://www.icgc.cat/Administracio-i-empresa/Serveis/Geologia/WMS-Cartografia-geologica)
 
 <p align="center">
